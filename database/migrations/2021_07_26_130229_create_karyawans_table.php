@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTarifsTable extends Migration
+class CreateKaryawansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateTarifsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tarifs', function (Blueprint $table) {
+        Schema::create('karyawans', function (Blueprint $table) {
             $table->id();
-            $table->string('mulai', 20);
-            $table->string('selsai', 20);
-            $table->string('perjam', 20);
-            $table->integer('id_lapangan');
+            $table->string('nama_karyawan', 50);
+            $table->string('nip', 11);
+            $table->string('no_tlpn', 12);
+            $table->string('agama', 20);
+            $table->text('alamat');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateTarifsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tarifs');
+        Schema::dropIfExists('karyawans');
     }
 }

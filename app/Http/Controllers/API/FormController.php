@@ -4,68 +4,76 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Lapangan;
+use App\Models\karyawan;
 
 class FormController extends Controller
 {
     public function create(Request $request)
     {
         $request->validate([
-            'nama_lapangan' => 'required',
-            'jumlah_lapangan' => 'required',
-            'luas_lapangan' => 'required'
+            'nama_karyawan' => 'required',
+            'nip' => 'required',
+            'no_tlpn' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required'
         ]);
 
         // dd($request->all());
-        $lapangan = new Lapangan;
-        $lapangan->nama_lapangan = $request->nama_lapangan;
-        $lapangan->jumlah_lapangan = $request->jumlah_lapangan;
-        $lapangan->luas_lapangan = $request->luas_lapangan;
-        $lapangan->save();
+        $karyawan = new Karyawan;
+        $karyawan->nama_karyawan = $request->nama_karyawan;
+        $karyawan->nip = $request->nip;
+        $karyawan->no_tlpn = $request->no_tlpn;
+        $karyawan->agama = $request->agama;
+        $karyawan->alamat = $request->alamat;
+        $karyawan->save();
 
         return response()->json([
-                'message'       => 'Lapangan Berhasil Ditambahkan',
-                'data_Lapangan'  => $lapangan
+                'message'       => 'Karyawan Berhasil Ditambahkan',
+                'data_Karyawan'  => $karyawan
             ], 200);
     }
 
     public function edit($id)
     {
-        $lapangan = Lapangan::find($id);
+        $karyawan = Karyawan::find($id);
         return response()->json([
                 'message'       => 'success',
-                'data_Lapangan'  => $lapangan
+                'data_Karyawan'  => $karyawan
             ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $lapangan = Lapangan::find($id);
+        $karyawan = Karyawan::find($id);
 
         $request->validate([
-            'nama_lapangan' => 'required',
-            'jumlah_lapangan' => 'required',
-            'luas_lapangan' => 'required'
+            'nama_karyawan' => 'required',
+            'nip' => 'required',
+            'no_tlpn' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required'
         ]);
 
-        $lapangan->update([
-            'nama_lapangan' => $request->nama_lapangan,
-            'jumlah_lapangan' => $request->jumlah_lapangan,
-            'luas_lapangan' => $request->luas_lapangan
+        $karyawan->update([
+            'nama_karyawan' => $request->nama_karyawan,
+            'nip' => $request->nip,
+            'no_tlpn' => $request->no_tlpn,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat
         ]);
 
         return response()->json([
                 'message'       => 'success',
-                'data_Lapangan'  => $lapangan
+                'data_Karyawan'  => $karyawan
             ], 200);
     }
 
     public function delete($id)
     {
-        $lapangan = Lapangan::find($id)->delete();
+        $karyawan = Karyawan::find($id)->delete();
 
         return response()->json([
-                'message'       => 'data Lapangan berhasil dihapus'
+                'message'       => 'data Karyawan berhasil dihapus'
             ], 200);
     }
 }

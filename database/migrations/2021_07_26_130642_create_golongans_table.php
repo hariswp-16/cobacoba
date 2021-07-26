@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLapangansTable extends Migration
+class CreateGolongansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLapangansTable extends Migration
      */
     public function up()
     {
-        Schema::create('lapangans', function (Blueprint $table) {
+        Schema::create('golongans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lapangan', 50);
-            $table->string('jumlah_lapangan');
-            $table->string('luas_lapangan', 11);
+            $table->string('nama_golongan', 50);
+            $table->string('gaji_pokok', 20);
+            $table->string('tunjangan_istri', 14);
+            $table->string('tunjangan_anak', 14);
+            $table->integer('id_karyawan');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateLapangansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lapangans');
+        Schema::dropIfExists('golongans');
     }
 }

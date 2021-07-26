@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\FormController;
-use App\Http\Controllers\API\tarifController;
+use App\Http\Controllers\API\GolonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +28,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/delete/{id}', [FormController::class, 'delete']);
 
     //crud score with relation to student
-    Route::post('/create-lapangan-tarif', [tarifController::class, 'create']);
-
+    Route::post('/create-karyawan-golongan', [GolonganController::class, 'create']);
+    Route::get('/edit-karyawan-golongan/{id}', [GolonganController::class, 'edit']);
+    Route::post('/edit-karyawan-golongan/{id}', [GolonganController::class, 'update']);
     Route::get('/logout', [AuthController::class, 'logout']);
 });
 
