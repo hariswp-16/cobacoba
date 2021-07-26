@@ -4,72 +4,68 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Supplier;
+use App\Models\Lapangan;
 
 class FormController extends Controller
 {
     public function create(Request $request)
     {
         $request->validate([
-            'nama_supplier' => 'required',
-            'no_telp' => 'required',
-            'alamat' => 'required',
-            'jns_klamin' => 'required'
+            'nama_lapangan' => 'required',
+            'jumlah_lapangan' => 'required',
+            'luas_lapangan' => 'required'
         ]);
 
         // dd($request->all());
-        $supplier = new Supplier;
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->no_telp = $request->no_telp;
-        $supplier->alamat = $request->alamat;
-        $supplier->jns_klamin = $request->jns_klamin;
-        $supplier->save();
+        $lapangan = new Lapangan;
+        $lapangan->nama_lapangan = $request->nama_lapangan;
+        $lapangan->jumlah_lapangan = $request->jumlah_lapangan;
+        $lapangan->luas_lapangan = $request->luas_lapangan;
+        $lapangan->save();
 
         return response()->json([
-                'message'       => 'Supplier Berhasil Ditambahkan',
-                'data_Supplier'  => $supplier
+                'message'       => 'Lapangan Berhasil Ditambahkan',
+                'data_Lapangan'  => $lapangan
             ], 200);
     }
 
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
+        $lapangan = Lapangan::find($id);
         return response()->json([
                 'message'       => 'success',
-                'data_Supplier'  => $supplier
+                'data_Lapangan'  => $lapangan
             ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::find($id);
+        $lapangan = Lapangan::find($id);
 
         $request->validate([
-            'nama_supplier' => 'required',
-            'no_telp' => 'required',
-            'alamat' => 'required',
-            'jns_klamin' => 'required'
+            'nama_lapangan' => 'required',
+            'jumlah_lapangan' => 'required',
+            'luas_lapangan' => 'required'
         ]);
 
-        $supplier->update([
-            'nama_supplier' => $request->nama_supplier,
-            'no_telp' => $request->no_telp,
-            'alamat' => $request->alamat,
-            'jns_klamin' => $request->jns_klamin
+        $lapangan->update([
+            'nama_lapangan' => $request->nama_lapangan,
+            'jumlah_lapangan' => $request->jumlah_lapangan,
+            'luas_lapangan' => $request->luas_lapangan
         ]);
 
         return response()->json([
                 'message'       => 'success',
-                'data_Supplier'  => $supplier
+                'data_Lapangan'  => $lapangan
             ], 200);
     }
 
     public function delete($id)
     {
-        $supplier = Supplier::find($id)->delete();
+        $lapangan = Lapangan::find($id)->delete();
 
         return response()->json([
-                'message'       => 'data Supplier berhasil dihapus'
+                'message'       => 'data Lapangan berhasil dihapus'
             ], 200);
     }
 }
