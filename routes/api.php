@@ -21,18 +21,19 @@ use App\Http\Controllers\API\GolonganController;
 //     return $request->user();
 // });
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    //crud student
+    //crud karyawan
     Route::post('/create', [FormController::class, 'create']);
     Route::get('/edit/{id}', [FormController::class, 'edit']);
     Route::post('/edit/{id}', [FormController::class, 'update']);
     Route::get('/delete/{id}', [FormController::class, 'delete']);
-
-    //crud score with relation to student
-    Route::post('/create-karyawan-golongan', [GolonganController::class, 'create']);
-    Route::get('/edit-karyawan-golongan/{id}', [GolonganController::class, 'edit']);
-    Route::post('/edit-karyawan-golongan/{id}', [GolonganController::class, 'update']);
+ 
     Route::get('/logout', [AuthController::class, 'logout']);
 });
-
+    //crud score with relation to Golongan
+Route::post('/create-karyawan-golongan', [GolonganController::class, 'create']);
+Route::get('/edit-karyawan-golongan/{id}', [GolonganController::class, 'edit']);
+Route::post('/edit-karyawan-golongan/{id}', [GolonganController::class, 'update']);
+Route::get('/delete-karyawan-golongan/{id}', [GolonganController::class, 'delete']);
+    
 Route::post('/login', [AuthController::class, 'login']);
 

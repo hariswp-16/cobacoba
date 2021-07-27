@@ -21,13 +21,13 @@ class GolonganController extends Controller
         $karyawan->save();
 
         foreach ($request->list_golongan as $key => $value) {
-            $golongan = array(
+            Golongan::create([
                 'nama_golongan' => $value['nama_golongan'],
                 'gaji_pokok' => $value['gaji_pokok'],
                 'tunjangan_istri' => $value['tunjangan_istri'],
                 'tunjangan_anak' => $value['tunjangan_anak'],
                 'id_Karyawan' => $karyawan->id
-            );
+            ]);
             $golongan = Golongan::create($golongan);
         }
 
@@ -45,7 +45,7 @@ class GolonganController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $golongan= Golongan::find($id);
+        $golongan= Golongan::find($id)->update;
         
         $karyawan            = new Karyawan;
         $karyawan->nama_karyawan      = $request->nama_karyawan;
@@ -65,26 +65,20 @@ class GolonganController extends Controller
             );
         }
 
-        // $karyawan->update([
-        //     'nama_karyawan' => $request->nama_karyawan,
-        //     'nip' => $request->nip,
-        //     'no_tlpn' => $request->no_tlpn,
-        //     'agama' => $request->agama,
-        //     'alamat' => $request->alamat
-        // ]);
+
 
         return response()->json([
                 'message'       => 'success',
-                'data_Karyawan'  => $karyawan
+                'data_Karyawan'  => $golongan
             ], 200);
     }
 
     public function delete($id)
     {
-        $karyawan = Karyawan::find($id)->delete();
+        $golongan = Golongan::find($id)->delete();
 
         return response()->json([
-                'message'       => 'data Karyawan berhasil dihapus'
+                'message'       => 'data Golongan berhasil dihapus'
             ], 200);
     }
 }
